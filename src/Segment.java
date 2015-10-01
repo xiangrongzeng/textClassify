@@ -29,7 +29,7 @@ public class Segment {
 
         String outStr = "";
         for(Term term : parses){
-            outStr += term.getName() + "\n";
+            outStr += term.getName() + MyConst.LINE_SEPARATE;
         }
         try {
             Tools.writeToFile(outStr, outFilename);

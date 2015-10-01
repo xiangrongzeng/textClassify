@@ -10,4 +10,6 @@ public class MyConst {
 
     public static String TEST_FOLDER_PATH = HOME_PATH + "test\\documents";
     public static String TEST_TERM_FOLDER_PATH = HOME_PATH + "test\\terms";
+
+    public static String LINE_SEPARATE = "\n";
 }
