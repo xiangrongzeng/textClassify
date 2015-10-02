@@ -9,12 +9,12 @@ public class Test {
 //        new Segment().cutFile(MyConst.TEST_FILENAME, MyConst.TEST_TERM_FILENAME);
 //        new Segment().cutFolder(MyConst.TEST_FOLDER_PATH, MyConst.TEST_TERM_FOLDER_PATH);
 
-//        try {
-//            IDF.doStatistics(MyConst.TEST_TERM_FOLDER_PATH);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        IDF.calcIdf();
+        try {
+            IDF.doStatistics(MyConst.TEST_TERM_FOLDER_PATH);
+            IDF.calcIdf(MyConst.TEST_TERM_IDF_FILENAME);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         try {
             TF.calcDf(MyConst.TEST_TERM_FILENAME);

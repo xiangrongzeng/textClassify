@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,30 +26,39 @@ public class IDF {
         totalDocNumber += fileList.length;
 
         for(String filename : fileList) {
+            Map<String, Integer> contain = new HashMap<>();
 
             File f = new File(inFolder + filename);
             BufferedReader br = new BufferedReader(new FileReader(f));
             String line;
             while((line = br.readLine()) != null) {
                 String term = line.trim();
+                if(!(contain.containsKey(term))){
+                    int termDocNumber;
+                    if(statistics.containsKey(term)){
+                        termDocNumber = statistics.get(term);
+                    }else{
+                        termDocNumber = 0;
+                    }
+                    statistics.put(term, termDocNumber + 1);
 
-                int termDocNumber;
-                if(statistics.containsKey(term)){
-                    termDocNumber = statistics.get(term);
-                }else{
-                    termDocNumber = 0;
+                    contain.put(term, 1);
                 }
 
-                statistics.put(term, termDocNumber + 1);
             }
+
         }
     }
 
     /**
      * 根据统计结果计算idf值
+     * @param filename 按照csv标准将idf写入到该文件中
      * @return idf
+     * @throws IOException
      */
-    public static Map<String, Double> calcIdf(){
+    public static Map<String, Double> calcIdf(String filename) throws IOException {
+        File f = new File(filename);
+        BufferedWriter bw = new BufferedWriter(new FileWriter(f));
         Map<String, Double> idf = new HashMap<>();
         for(Map.Entry<String, Integer> entry : statistics.entrySet()){
             String term = entry.getKey();
@@ -60,7 +66,10 @@ public class IDF {
 
             double termIdf = Math.log(1.0*totalDocNumber/termDocNumber);
             idf.put(term, termIdf);
+
+            bw.write(term + "," + termIdf + MyConst.LINE_SEPARATE);
         }
+        bw.close();
 
         return idf;
     }

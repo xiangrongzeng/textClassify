@@ -23,7 +23,7 @@ public class TF {
         // 统计
         File f = new File(inFilename);
         BufferedReader br = new BufferedReader(new FileReader(f));
-        String line = null;
+        String line;
         while((line = br.readLine()) != null){
             String term = line.trim();
             int termNumber;
@@ -38,13 +38,13 @@ public class TF {
         }
 
         // 计算
-        Map<String, Double> df = new HashMap<>();
+        Map<String, Double> tf = new HashMap<>();
         for(String term : termStatistics.keySet()){
             int termNumber = termStatistics.get(term);
             double thisDf = 1.0*termNumber/totalTermNumber;
-            df.put(term, thisDf);
+            tf.put(term, thisDf);
         }
 
-        return df;
+        return tf;
     }
 }
