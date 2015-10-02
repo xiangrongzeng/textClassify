@@ -44,12 +44,9 @@ public class Segment {
      * @param outFolderPath 存储结果的文件夹
      */
     public void cutFolder(String inFolderPath, String outFolderPath){
-        if(!(inFolderPath.substring(inFolderPath.length()-1).equals("\\"))){
-            inFolderPath += "\\";
-        }
-        if(!(outFolderPath.substring(outFolderPath.length()-1).equals("\\"))){
-            outFolderPath += "\\";
-        }
+        inFolderPath = Tools.ensurePath(inFolderPath);
+        outFolderPath = Tools.ensurePath(outFolderPath);
+
         File folder = new File(inFolderPath);
         String[] filenameList = folder.list();
         for(String filename : filenameList){

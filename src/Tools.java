@@ -24,4 +24,11 @@ public class Tools {
         bw.write(content);
         bw.close();
     }
+
+    public static String ensurePath(String folderPath){
+        if(!(folderPath.substring(folderPath.length()-1).equals("\\"))){
+            folderPath += "\\";
+        }
+        return folderPath;
+    }
 }
