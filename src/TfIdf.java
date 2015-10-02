@@ -36,23 +36,23 @@ public class TfIdf {
                 String term = line.trim();
 
                 Map<String, Map<String, Integer>> thisTermStatistics;
-                try{
+                if(termStatistics.containsKey(term)){
                     thisTermStatistics = termStatistics.get(term);
-                }catch (Exception e){
+                }else{
                     thisTermStatistics = new HashMap<>();
                 }
 
                 Map<String, Integer> thisClassStatistics;
-                try{
+                if(thisTermStatistics.containsKey(className)){
                     thisClassStatistics = thisTermStatistics.get(className);
-                }catch (Exception e){
+                }else{
                     thisClassStatistics = new HashMap<>();
                 }
 
                 int thisFileTermCount;
-                try{
+                if(thisClassStatistics.containsKey(filename)){
                     thisFileTermCount = thisClassStatistics.get(filename);
-                }catch (Exception e){
+                }else{
                     thisFileTermCount = 0;
                 }
 
@@ -62,5 +62,9 @@ public class TfIdf {
             }
         }
 
+    }
+
+    public static Map<String, Map<String, Map<String, Integer>>> getTermStatistics(){
+        return termStatistics;
     }
 }
