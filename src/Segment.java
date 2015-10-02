@@ -1,8 +1,12 @@
 import org.ansj.domain.Term;
 import org.ansj.splitWord.analysis.BaseAnalysis;
+import org.ansj.util.FilterModifWord;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,6 +14,20 @@ import java.util.List;
  * 分词
  */
 public class Segment {
+    ArrayList<String> stopWords = new ArrayList<>();
+    public Segment(String stopFilename){
+        File f = new File(stopFilename);
+        try (BufferedReader br = new BufferedReader(new FileReader(f))) {
+            String line;
+
+            while((line = br.readLine()) != null) {
+                String word = line.trim();
+                stopWords.add(word);
+            }
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * 对文件进行分词，将结果写入指定的文件
@@ -29,7 +47,11 @@ public class Segment {
 
         String outStr = "";
         for(Term term : parses){
-            outStr += term.getName() + MyConst.LINE_SEPARATE;
+            if(!(stopWords.contains(term.getName()))
+                    && !term.getName().matches("\\pP")
+                    && !term.getName().matches("\\pZ")){
+                outStr += term.getName() + MyConst.LINE_SEPARATE;
+            }
         }
         try {
             Tools.writeToFile(outStr, outFilename);

@@ -5,6 +5,8 @@
 public class MyConst {
     static String HOME_PATH = "c:\\Users\\sunder\\Documents\\myfile\\textClassify\\data\\";
 
+    public static String STOP_WORD_FILENAME = HOME_PATH + "stop_words.txt";
+
     public static String TEST_FILENAME = HOME_PATH + "test\\test.txt";
     public static String TEST_TERM_FILENAME = HOME_PATH + "test\\term.txt";
 
