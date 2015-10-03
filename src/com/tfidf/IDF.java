@@ -1,3 +1,8 @@
+package com.tfidf;
+
+import com.MyConst;
+import com.Tools;
+
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;

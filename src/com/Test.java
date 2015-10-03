@@ -1,5 +1,9 @@
+package com;
+
+import com.tfidf.IDF;
+import com.tfidf.TF;
+
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * Created by sunder on 2015/10/1.
@@ -7,7 +11,7 @@ import java.util.ArrayList;
  */
 public class Test {
     public static void main(String[] args) {
-//        new Segment().cutFile(MyConst.TEST_FILENAME, MyConst.TEST_TERM_FILENAME);
+        new com.Segment(MyConst.STOP_WORD_FILENAME).cutFile(com.MyConst.TEST_FILENAME, com.MyConst.TEST_TERM_FILENAME);
         new Segment(MyConst.STOP_WORD_FILENAME).cutFolder(MyConst.TEST_FOLDER_PATH, MyConst.TEST_TERM_FOLDER_PATH);
 
         try {
@@ -16,14 +20,14 @@ public class Test {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//
-//        try {
-//            TF.calcDf(MyConst.TEST_TERM_FILENAME);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        if("£»".matches("\\pP")){
-//            System.out.println("yes");
-//        }
+
+        try {
+            TF.calcDf(com.MyConst.TEST_TERM_FILENAME);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if("£»".matches("\\pP")){
+            System.out.println("yes");
+        }
     }
 }

@@ -1,6 +1,7 @@
+package com;
+
 import org.ansj.domain.Term;
 import org.ansj.splitWord.analysis.BaseAnalysis;
-import org.ansj.util.FilterModifWord;
 
 import java.io.BufferedReader;
 import java.io.File;
