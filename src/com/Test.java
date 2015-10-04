@@ -1,5 +1,6 @@
 package com;
 
+import com.libsvm.DataPrepare;
 import com.tfidf.IDF;
 import com.tfidf.TF;
 
@@ -15,6 +16,12 @@ public class Test {
 //        new com.Segment(MyConst.STOP_WORD_FILENAME).cutFile(com.MyConst.TEST_FILENAME, com.MyConst.TEST_TERM_FILENAME);
 //        new Segment(MyConst.STOP_WORD_FILENAME).cutFolder(MyConst.TEST_FOLDER_PATH, MyConst.TEST_TERM_FOLDER_PATH);
 
+//        try {
+//            TF.calcDf(com.MyConst.TEST_TERM_FILENAME);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
         try {
             IDF.doStatistics(MyConst.TEST_TERM_FOLDER_PATH);
             Map<String, Double> idf = IDF.calcIdf(MyConst.TEST_TERM_IDF_FILENAME);
@@ -22,14 +29,14 @@ public class Test {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        try {
+            DataPrepare.prepare(MyConst.TEST_TERM_FOLDER_PATH,
+                    MyConst.TEST_TERM_IDF_FILENAME,
+                    MyConst.KEY_WORD_FILENAME,
+                    MyConst.TRAIN_FILENAME);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-//        try {
-//            TF.calcDf(com.MyConst.TEST_TERM_FILENAME);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        if("£»".matches("\\pP")){
-//            System.out.println("yes");
-//        }
     }
 }
