@@ -1,6 +1,7 @@
 package com;
 
 import com.libsvm.DataPrepare;
+import com.libsvm.SVM;
 import com.tfidf.IDF;
 import com.tfidf.TF;
 
@@ -9,7 +10,7 @@ import java.util.Map;
 
 /**
  * Created by sunder on 2015/10/1.
- * ²âÊÔ
+ * æµ‹è¯•åŠŸèƒ½
  */
 public class Test {
     public static void main(String[] args) {
@@ -22,18 +23,24 @@ public class Test {
 //            e.printStackTrace();
 //        }
 
+//        try {
+//            IDF.doStatistics(MyConst.TEST_TERM_FOLDER_PATH);
+//            Map<String, Double> idf = IDF.calcIdf(MyConst.TEST_TERM_IDF_FILENAME);
+//            KeyWord.select(idf, MyConst.KEY_WORD_NUMBER, MyConst.KEY_WORD_FILENAME);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            DataPrepare.prepare(MyConst.TEST_TERM_FOLDER_PATH,
+//                    MyConst.TEST_TERM_IDF_FILENAME,
+//                    MyConst.KEY_WORD_FILENAME,
+//                    MyConst.TRAIN_FILENAME);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
         try {
-            IDF.doStatistics(MyConst.TEST_TERM_FOLDER_PATH);
-            Map<String, Double> idf = IDF.calcIdf(MyConst.TEST_TERM_IDF_FILENAME);
-            KeyWord.select(idf, MyConst.KEY_WORD_NUMBER, MyConst.KEY_WORD_FILENAME);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            DataPrepare.prepare(MyConst.TEST_TERM_FOLDER_PATH,
-                    MyConst.TEST_TERM_IDF_FILENAME,
-                    MyConst.KEY_WORD_FILENAME,
-                    MyConst.TRAIN_FILENAME);
+            SVM.train(MyConst.TRAIN_FILENAME);
         } catch (IOException e) {
             e.printStackTrace();
         }

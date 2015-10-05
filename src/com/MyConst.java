@@ -2,7 +2,7 @@ package com;
 
 /**
  * Created by sunder on 2015/10/1.
- * ����
+ * 常量类
  */
 public class MyConst {
     static String HOME_PATH = "c:\\Users\\sunder\\Documents\\myfile\\textClassify\\data\\";
