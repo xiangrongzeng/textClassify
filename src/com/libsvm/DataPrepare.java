@@ -47,7 +47,6 @@ public class DataPrepare {
             turnToVector(tf, idf, keyWords, folderName, trainFileWriter);
         }
 
-        trainFileWriter.newLine();
         trainFileWriter.close();
     }
 
