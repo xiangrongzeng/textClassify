@@ -69,6 +69,10 @@ public class Segment {
     public void cutFolder(String inFolderPath, String outFolderPath){
         inFolderPath = Tools.ensurePath(inFolderPath);
         outFolderPath = Tools.ensurePath(outFolderPath);
+        File outFolder = new File(outFolderPath);
+        if(!outFolder.exists()){
+            outFolder.mkdirs();
+        }
 
         File folder = new File(inFolderPath);
         String[] filenameList = folder.list();
