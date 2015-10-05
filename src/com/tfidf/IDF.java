@@ -57,12 +57,12 @@ public class IDF {
 
     /**
      * 根据统计结果计算idf值
-     * @param filename 按照csv标准将idf写入到该文件中
+     * @param idfFilename 按照csv标准将idf写入到该文件中
      * @return idf
      * @throws IOException
      */
-    public static Map<String, Double> calcIdf(String filename) throws IOException {
-        File f = new File(filename);
+    public static Map<String, Double> calcIdf(String idfFilename) throws IOException {
+        File f = new File(idfFilename);
         BufferedWriter bw = new BufferedWriter(new FileWriter(f));
         Map<String, Double> idf = new HashMap<>();
         for(Map.Entry<String, Integer> entry : statistics.entrySet()){
@@ -77,5 +77,15 @@ public class IDF {
         bw.close();
 
         return idf;
+    }
+
+    public static Map<String, Double> calcDataBaseIdf(String basePath, String idfFilename) throws IOException {
+        basePath = Tools.ensurePath(basePath);
+        File termBaseFolder = new File(basePath);
+        for(String folderName : termBaseFolder.list()){
+                doStatistics(basePath + folderName);
+        }
+
+        return calcIdf(idfFilename);
     }
 }
