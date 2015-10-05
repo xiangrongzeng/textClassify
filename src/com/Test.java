@@ -40,7 +40,7 @@ public class Test {
 //        }
 
         try {
-            SVM.train(MyConst.TRAIN_FILENAME);
+            SVM.train(MyConst.TRAIN_FILENAME, MyConst.MODEL_FILENAME);
         } catch (IOException e) {
             e.printStackTrace();
         }

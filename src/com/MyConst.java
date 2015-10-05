@@ -10,6 +10,8 @@ public class MyConst {
     public static String STOP_WORD_FILENAME = HOME_PATH + "stop_words.txt";
     public static String KEY_WORD_FILENAME = HOME_PATH + "key_words.txt";
     public static String TRAIN_FILENAME = HOME_PATH + "train";
+    public static String MODEL_FILENAME = TRAIN_FILENAME + ".model";
+    public static String PREDICT_RESULT_FILENAME = HOME_PATH + "predict_result";
     public static int KEY_WORD_NUMBER = 50;
     public static Double SMALL_NUMBER = 0.0001;
 

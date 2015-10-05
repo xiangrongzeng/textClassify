@@ -43,8 +43,17 @@ public class Main {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
+
+        // 训练
+//        try {
+//            SVM.train(MyConst.TRAIN_FILENAME, MyConst.MODEL_FILENAME);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+        // 预测
         try {
-            SVM.train(MyConst.TRAIN_FILENAME);
+            SVM.predict(MyConst.TRAIN_FILENAME, MyConst.MODEL_FILENAME, MyConst.PREDICT_RESULT_FILENAME);
         } catch (IOException e) {
             e.printStackTrace();
         }
