@@ -15,6 +15,14 @@ import java.util.Map;
  */
 public class DataPrepare {
 
+    /**
+     * 将一个文件夹中的每个文件表示成一个文本向量，写入同一个文件中
+     * @param folderPath 文件夹路径
+     * @param idfFilename idf文件路径
+     * @param keyWordsFilename 关键词文件路径
+     * @param trainFilename 最终生成的文件
+     * @throws IOException
+     */
     public static void prepare(String folderPath,
                                String idfFilename,
                                String keyWordsFilename,
@@ -43,6 +51,11 @@ public class DataPrepare {
         trainFileWriter.close();
     }
 
+    /**
+     * 导入idf值
+     * @param idfFilename idf文件路径
+     * @return idf Map
+     */
     public static Map<String, Double> loadIdf(String idfFilename){
         // 读入idf值
         Map<String, Double> idf = new HashMap<>();
@@ -66,6 +79,11 @@ public class DataPrepare {
         return idf;
     }
 
+    /**
+     * 导入关键词
+     * @param keyWordsFilename 关键词文件路径
+     * @return 关键词列表
+     */
     public static ArrayList<String> loadKeywords(String keyWordsFilename) {
         ArrayList<String> keyWords = new ArrayList<>();
         File idfFile = new File(keyWordsFilename);
@@ -85,6 +103,15 @@ public class DataPrepare {
         return keyWords;
     }
 
+    /**
+     * 将一个文件表示成一行向量，并写入到向量文件中
+     * @param tf 该文件中每个词的tf值
+     * @param idf idf Map
+     * @param keyWords 关键词列表
+     * @param folderName 文件夹名字，也就是类名
+     * @param trainFileWriter 向量文件的写出缓冲
+     * @throws IOException
+     */
     public static void turnToVector(Map<String, Double> tf,
                                      Map<String, Double> idf,
                                      ArrayList<String> keyWords,
@@ -113,5 +140,27 @@ public class DataPrepare {
 
         trainFileWriter.write(vector);
         trainFileWriter.newLine();
+    }
+
+    /**
+     * 将一个“数据库”中的文件表示成文本向量并写入一个文件中
+     * @param dataBasePath 数据库路径
+     * @param idfFilename idf文件路径
+     * @param keyWordsFilename 关键词文件路径
+     * @param trainFilename 生成的文件
+     * @throws IOException
+     */
+    public static void prepareDataBase(String dataBasePath,
+                                       String idfFilename,
+                                       String keyWordsFilename,
+                                       String trainFilename) throws IOException {
+        dataBasePath = Tools.ensurePath(dataBasePath);
+        File dataBase = new File(dataBasePath);
+        for(String folderName : dataBase.list()){
+            prepare(dataBasePath + folderName,
+                    idfFilename,
+                    keyWordsFilename,
+                    trainFilename);
+        }
     }
 }
